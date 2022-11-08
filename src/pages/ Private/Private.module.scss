@@ -1,0 +1,41 @@
+
+.body{
+  margin-top: 150px;
+    .thuvien{
+        display: flex;
+        
+
+
+        .iconplay{
+            width: 40px;
+            height: 40px;
+            color: #1E8370;
+        }
+    }
+    // display: flex;
+}
+
+.cactep{
+    margin-top: 50px;
+    display: flex;
+    .ten{
+        margin-left: 20px;
+        a{
+            text-decoration: none;
+            color: var(--color);
+            opacity: 0.8;
+
+        }
+        a:hover{
+            opacity: 1;
+        }
+    }
+    .ten:first-child{
+        margin-left: -7px;
+    }
+
+   
+}
+.aoulet{
+    margin-top: 50px;
+}

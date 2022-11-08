@@ -1,0 +1,95 @@
+body {
+    font-family: Inter, sans-serif;
+}
+
+.body {
+    &:hover {
+        background-color: #273143;
+    }
+    border: 0px;
+    border-radius: 5px;
+    border-bottom: rgba(255, 255, 255, 0.1) 1px;
+    max-height: 60px;
+    display: flex;
+    border-style: outset;
+    justify-content: space-between;
+ 
+
+    button {
+        color: var(--color)
+    }
+
+    .index {
+        margin-right: 30px;
+        min-width: 30px;
+    }
+}
+
+.media {
+    height: 60px;
+    margin-left: 25px;
+    display: flex;
+
+    .img {
+        border-radius: 5px;
+        display: flex;
+        height: 40px;
+        width: 40px;
+        margin-top: 8px;
+      
+
+
+        p {
+            max-height: 5px;
+        }
+
+
+    }
+
+    .iteam-wrapper {
+
+        :first-child {
+            color: white;
+        }
+
+        margin-left: 30px;
+        color: hsla(0, 0%, 100%, 0.5);
+        ;
+    }
+}
+
+
+.Zingchart {
+
+    font-size: 40px;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: normal;
+
+    .Logo {
+        height: 40px;
+        color: red;
+        background-color: aqua;
+    }
+}
+
+.xemtop100 {
+
+    border-radius: 999px;
+    border: 1px solid;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.43;
+    margin-left: 40%;
+    margin-top: 30px;
+    color: white;
+    padding: 5px 20px;
+
+
+
+
+}
+
+.xemtop100:hover {
+    background-color: #203755;
+}

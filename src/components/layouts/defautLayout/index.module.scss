@@ -1,0 +1,47 @@
+
+:root{
+    --sidebar : 35, 54, 78;
+    --a : 24 ,48 ,78;
+    --bg-color: 23 , 43 ,68;
+    --alpha: 0.8;
+    --color : white
+  }
+  
+
+  
+  body{
+    font-family: Inter,sans-serif;
+    font-size: 14px;
+    overscroll-behavior: none;
+    font-weight: 400;
+    background-color: rgba(var(--bg-color) );
+    color : var(--color);
+    text-decoration: none;
+    cursor: default;
+    
+    button{
+        border: none;
+        background-color: rgba(var(--bg-color) );
+    }
+    
+    
+}
+
+
+.children{ 
+  //  background-color: red;
+    background-color: rgba(var(--bg-color) );
+    width: 73%;
+    margin-top: 100px;
+    margin-left: 25%;
+    padding-bottom: 120px;
+    z-index: 0;
+    
+  
+}
+@media screen and  (max-width : 70em) {
+  .children{
+    margin-left: 130px;
+    width: 85%;
+  }
+}

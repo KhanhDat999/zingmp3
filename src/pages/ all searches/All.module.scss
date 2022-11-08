@@ -1,0 +1,41 @@
+.body {
+    &:hover{
+        background-color: #273143;
+    }
+    border: 0px;
+  
+    border-bottom: rgba(255,255,255, 0.1) 1px;
+    max-height: 60px;
+    display: flex;
+    border-style: outset;
+    justify-content: space-between;
+
+}
+
+.media {
+    height: 60px;
+
+    display: flex;
+
+    .img {
+        border-radius: 5px;
+        display: flex;
+        height: 40px;
+        width: 40px;
+        margin-top: 8px;
+
+
+        p {
+            max-height: 5px;
+        }
+
+
+    }
+
+    .iteam-wrapper {
+
+        margin-left: 30px;
+
+     
+    }
+}

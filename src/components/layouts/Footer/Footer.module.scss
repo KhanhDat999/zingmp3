@@ -1,0 +1,141 @@
+.body {
+    display: flex;
+    background-color: rgba(var(--a));
+    position: fixed;
+    height: 90px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    min-width: 768px;
+    justify-content: space-between;
+
+    button {
+        height: 25px;
+        width: 25px;
+        color: var(--color);
+        background-color: rgba(var(--a));
+        ;
+    }
+}
+
+.media {
+    width: 200px;
+    height: 64px;
+
+    margin: 15px;
+    display: flex;
+
+    .img6464 {
+        height: 64px;
+        width: 64px;
+        position: fixed;
+        border-radius: 5px;
+
+    }
+
+    .iteam-wrapper {
+        margin-top: 10px;
+        margin-left: 70px;
+        position: fixed;
+        z-index: 0;
+
+
+        button {
+            margin-left: 40px;
+            position: fixed;
+
+
+            :hover {
+                opacity: 0.8;
+            }
+        }
+
+        .children {
+            font-size: 12px;
+            margin-top: 3px;
+        }
+    }
+
+}
+
+.media1 {
+    width: 450px;
+    height: 64px;
+    margin: 15px;
+    display: flex;
+    background-color: #19314D;
+    z-index: 2;
+    position: relative;
+    box-shadow: 5px 20px 30px 35px #19314D;
+
+    .actions {
+        height: 50px;
+
+        .item {
+            display: flex;
+            z-index: 2;
+            left: 40%;
+            width: 248px;
+            position: fixed;
+            height: 50px;
+            align-items: center;
+            justify-content: space-evenly;
+
+
+            .loading {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 10px;
+                animation: Snipper 1.5s infinite linear;
+                
+
+            }
+
+            @keyframes Snipper {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .icPause {
+
+                width: 40px;
+                height: 40px;
+                margin-bottom: 10px;
+
+                :hover {
+                    color: #1FA790;
+                }
+            }
+
+
+            .styleitem {
+                width: 20px;
+                height: 20px;
+                border-radius: 999px;
+                margin-bottom: 10px;
+
+                button:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        .leveritem {
+            left: 34%;
+            position: fixed;
+            z-index: 2;
+            bottom: 5px;
+            height: 18px;
+            width: 400px;
+
+            .inputrange{
+                width: 80%;
+            }
+        }
+    }
+}

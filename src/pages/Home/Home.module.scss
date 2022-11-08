@@ -1,0 +1,160 @@
+@media screen and (max-width : 62em) {
+
+    .header {
+        img {
+            height: 170px;
+        }
+    }
+
+    .giua {
+        display: none;
+    }
+
+    .img3 {
+        display: none;
+    }
+    .container{
+
+        .content{
+            img{
+                width: 180px;
+            
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width : 36em) {
+
+    .img2 {
+        display: none;
+    }
+    .container{
+
+        .content{
+            img{
+                width: 100px;
+            
+            
+            }
+        }
+
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 161px;
+
+
+    img {
+        height: 160px;
+        width: auto;
+
+        border-radius: 5px;
+    }
+
+}
+
+.body {
+    width: 100%;
+    height: 411px;
+
+    margin-top: 50px;
+
+    .img {
+        margin-top: 15px;
+        margin-left: 10px;
+        display: flex;
+        min-width: 289px;
+
+
+
+
+        .content {
+            margin-left: 7px;
+
+            h5 {
+                min-width: 100px;
+                font-weight: 500;
+                font-size: 14px;
+            }
+
+            p {
+                font-size: 12px;
+                margin-top: 3px;
+            }
+        }
+
+        img {
+            height: 60px;
+            width: 60px;
+            border-radius: 5px;
+        }
+    }
+}
+.container1{
+    margin-top: 30px;
+    height: 100px;
+   
+    img{
+    margin-top: 10px;
+       width: 290px;
+       border-radius: 5px;
+    }
+}
+.container {
+    margin-top: 50px;
+
+
+    .content {
+
+        width: 25%;
+        height: 280px;
+
+        img {
+            height: 210px;
+      
+            border-radius: 5px;
+        }
+        
+        h5 {
+            min-width: 100px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        p {
+            font-size: 12px;
+            margin-top: 3px;
+        }
+    }
+}
+
+.back {
+    position: absolute;
+    font-size: 40px;
+    left: 10px;
+}
+.xemtop100 {
+
+    border-radius: 100px;
+    border: 1px solid;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.43;
+   margin-left: 10px;
+    margin-top: 30px;
+    color: white;
+    padding: 5px 10px;
+
+
+
+
+}
+
+.xemtop100:hover {
+    background-color: #203755;
+}

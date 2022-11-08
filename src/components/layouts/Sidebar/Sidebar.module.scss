@@ -1,0 +1,76 @@
+
+
+.body{
+    font-size: 13px;
+    font-weight: 700;
+    color: #DADADA;
+    top: 0;
+    position: fixed;
+    background-color: rgba(var(--sidebar));
+    height: 100vh; 
+    width: 19%;
+    
+    div:hover{
+        background-color: #323C4C;
+        
+    }
+    .iconz{
+        width: 24px;
+        height: 24px;
+        margin-left: -5px;
+        margin-right: 10px;
+    }
+    .zmnavbaritem{
+        height: 40px;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 8px 25px; 
+        color: #DADADA;
+        a{
+            color: #DADADA;
+            text-decoration: none;
+       
+        }
+        a:hover {
+            color : white
+        }
+    }
+}
+.zmp3logo{
+    height:70px;
+    padding-top: 20px;
+    padding-left: 20px;
+    :hover{
+        opacity: 0.9;
+    }
+    .mp3logo1{
+        display: none;
+    }
+    img{
+        width: 120px;
+       height: 40px;
+    }
+}
+@media screen and ( max-width : 70em) {
+    .body{
+        width: 70px;
+        .iconz{
+            display: block;
+        }
+        .zmnavbaritem{
+            span{
+
+                display: none;
+            }
+        }
+        .mp3logo1{
+            margin-left: -10px;
+            height: 45px;
+            width: 45px;
+            display: block;
+        }
+        .mp3logo{
+            display: none;
+        }
+    }
+}
