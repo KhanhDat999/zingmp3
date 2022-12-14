@@ -7,15 +7,18 @@
     left: 19%;
     position: fixed;
     padding-left: 59px;
+    z-index: 1;
+
     .header {
         display: flex;
         margin-top: 15px;
-      
+
     }
-    button{
+
+    button {
         border: none;
         background-color: #2e4158;
-        color : var(--color);
+        color: var(--color);
         cursor: pointer;
         font-size: 20px;
         margin-top: 3px;
@@ -25,27 +28,29 @@
             opacity: 0.8;
         }
     }
+
     .btnIcon {
         font-size: 24px;
         margin-right: 20px;
         color: rgb(255, 255, 255, 0.5);
         line-height: 66%;
- 
-        margin-top: 
-        9px;
+
+        margin-top:
+            9px;
         background-color: rgba(var(--bg-color));
-      
-    
+
+
         :hover {
             color: white;
             opacity: 0.8;
         }
     }
 }
+
 @media screen and (max-width : 70em) {
     .body {
         left: 60px;
-    
+
         .lever-right {
             margin-left: 50px;
         }
@@ -59,6 +64,7 @@
         }
     }
 }
+
 .wapper {
     z-index: 3;
     position: relative;
@@ -77,17 +83,17 @@
     width: 40vw;
     border-radius: 20px;
 
-    
+
     &:focus-within {
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
-    
+
     }
-   
-   
+
+
     input {
-        color : var(--color);
-       outline: none;
+        color: var(--color);
+        outline: none;
         width: 70%;
         display: inline-block;
         padding: 5px 0;
@@ -99,11 +105,12 @@
         background-color: transparent;
         position: absolute;
     }
-    
+
     .box {
         color: red
     }
-    span{
+
+    span {
         color: #dadada;
         cursor: pointer;
         font-size: 20px;
@@ -141,22 +148,40 @@
         border-radius: 999px;
         background-color: #2e4158;
         margin-left: 12px;
-       
+
 
         :hover {
             opacity: 0.9;
         }
 
-        
+
     }
 }
+
 .content {
-   div:hover{
-    background-color: hsla(0,0%,100%,0.1);
-}
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: scroll; 
+ 
+    div{
+        min-height: 37px;
+    }
+    div:hover {
+        background-color: hsla(0, 0%, 100%, 0.1);
+    }
+
+    span {
+        height: 37px;
+    }
+
     height: 500px;
-    a{
+
+    a {
         text-decoration: none;
-        color :var(--color)
+        color: var(--color)
     }
 }
+::-webkit-scrollbar {
+  
+    background-color: #2F4157;
+    border-radius: 10px;
+  }

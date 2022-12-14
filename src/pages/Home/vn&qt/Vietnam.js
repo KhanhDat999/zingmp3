@@ -25,7 +25,7 @@ function Vietnam() {
                             <img src={res.thumbnailM} />
                             <div className={cx('content')}>
                                 <h5>{res.title.slice(0 ,30)}</h5>
-                                <p>{res.artistsNames}</p>
+                                <p >{res.artistsNames}</p>
                             </div>
                         </div>
                     ))}

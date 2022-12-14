@@ -50,6 +50,14 @@ function Sidebar() {
                    
                     </Link>
                 </div>
+                <hr></hr>
+                <div className={styles.zmnavbaritem}>
+                    <Link to='/private'>
+                        <MdOutlineFeed className={cx('iconz')} />
+                        <span> Bài hát</span>
+                   
+                    </Link>
+                </div>
             </div>
         </div>
     );

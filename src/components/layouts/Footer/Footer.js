@@ -11,7 +11,6 @@ import { ImNext2 } from 'react-icons/im'
 import { FiRepeat } from 'react-icons/fi'
 import { instance } from '../../../uttils/request'
 import { Global } from '../../GlobalState/GlobalState'
-import { FontAwesomeIcon } from '@fortawesome/free-solid-svg-icons'
 import toast, { Toaster } from 'react-hot-toast';
 
 
@@ -71,7 +70,8 @@ function Footer() {
       setPause(false)
       setLoading(true)
       setplay(false)
-      const apis = await instance.get(`getSong/music/${Item.footer[Item.codeindex].encodeId}`)
+      const apis = await instance.get(`/api/song?id=${Item.footer[Item.codeindex].encodeId}`)
+
       setSrc(apis.data.data[128])
       setPause(true)
       setLoading(false)
@@ -137,12 +137,38 @@ function Footer() {
 
   const handleInput = (e) => {
     if (audio.current.volume < 0.05) {
-      console.log('abc')
+
     }
     audio.current.volume = e.target.value
     setvolumes(audio.current.volume)
   }
 
+  const Heart = async (...props) => {
+
+    console.log(props)
+
+    const cart = localStorage.getItem("heart") ? JSON.parse(localStorage.getItem("heart")) : []
+
+    const abc = cart.some((res) => {
+      return res.title == props[1]
+    })
+
+    if (abc == true) toast.error("Sản phẩm đã được thêm vào giỏ hàng")
+    else {
+
+      cart.push({
+        thumbnailM: props[0],
+        title: props[1],
+        artistsNames: props[2],
+        encodeId: Item.footer[Item.codeindex].encodeId,
+        heart: true
+
+      })
+      localStorage.setItem("heart", JSON.stringify(cart))
+      toast.success('Đã thêm sản phẩm vào giỏ hàng')
+    }
+
+  }
 
   return (
     <>
@@ -168,9 +194,10 @@ function Footer() {
                 <Tippy content="Thêm vào thư viện">
                   <button >
                     <AiOutlineHeart onClick={() => {
-                      Favourite(Item.footer[Item.codeindex].thumbnailM,
+                      Heart(Item.footer[Item.codeindex].thumbnailM,
                         Item.footer[Item.codeindex].title,
                         Item.footer[Item.codeindex].artistsNames,
+                        src
                       )
                       setHeart(false)
                     }} />

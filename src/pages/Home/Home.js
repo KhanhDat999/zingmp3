@@ -8,18 +8,54 @@ import Col from 'react-bootstrap/Col'
 import { MdArrowBackIosNew } from 'react-icons/md'
 import Vietnam from './vn&qt/Vietnam';
 import Quocte from './vn&qt/Quocte';
+import { AiFillPlayCircle, AiOutlineHeart, AiFillStepBackward, AiOutlinePauseCircle, AiOutlinePlayCircle } from 'react-icons/ai'
+import { instance } from '../../uttils/request';
+import ReactLoading from 'react-loading';
+import { Link } from 'react-router-dom'
+import axios from 'axios';
+
+
 
 const cx = classNames.bind(styles)
 
 function Home() {
 
-    const [index, setIndex] = useState(0)
-    const [banner, setBanner] = useState([])
-    const [vietnam, setvietnam] = useState(true)
     const Item = useContext(Global)
 
-    const index1 = index + 1;
-    const index2 = index + 2
+    const [index, setIndex] = useState(2)
+    const [banner, setBanner] = useState([])
+    const [home5, setHome5] = useState([])
+    const [home3, setHome3] = useState([])
+    const [vietnam, setvietnam] = useState(true)
+    const [pagination, setPagination] = useState(10)
+    const [top100, settop100] = useState(true)
+
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (index == 5) {
+                setIndex(2)
+            }
+            else {
+                setIndex(index + 1)
+            }
+        }, 5000);
+    }, [index])
+useEffect(() =>{
+
+    instance.get('/api/home?page=5')
+    .then(res => setHome5(res.data.data.items))
+
+},[])
+useEffect(() =>{
+    instance.get('/api/home?page=3')
+   
+    .then(res => setHome3(res.data.data.items))
+},[])
+
+
+console.log(home5)
+
 
     return (
 
@@ -28,17 +64,17 @@ function Home() {
 
                 {Item.home[0] &&
                     <Row className={cx('header')} lg={3} sm={2}>
-                        <Col className={cx('img1')}  ><img xs={10} sm={6} lg={3} src={Item.home[0].items[0].banner} /> </Col>
-                        <Col className={cx('img2')} > <img sm={6} lg={3} src={Item.home[0].items[1].banner} />  </Col>
-                        <Col className={cx('img3')}  > <img sm={0} lg={3} src={Item.home[0].items[2].banner} /> </Col>
+                        <Link to='/album' > <Col onClick={() => Item.setAlbum(Item.home[0].items[index].encodeId)} className={cx('img1')}  ><img xs={10} sm={6} lg={3} src={Item.home[0].items[index - 2].banner} /> </Col></Link>
+                        <Link to='/album' > <Col onClick={() => Item.setAlbum(Item.home[0].items[index].encodeId)} className={cx('img2')} > <img sm={6} lg={3} src={Item.home[0].items[index - 1].banner} />  </Col></Link>
+                        <Link to='/album'> <Col onClick={() => Item.setAlbum(Item.home[0].items[index].encodeId)} className={cx('img3')}  > <img sm={0} lg={3} src={Item.home[0].items[index].banner} /> </Col></Link>
                     </Row>
                 }
             </div>
             <div className={cx('body')}>
                 <h4>Mới Phát Hành</h4>
-                <div>
-                    <span onClick={() => setvietnam(true)} className={cx('xemtop100')}> Việt Nam</span>
-                    <span onClick={() => setvietnam(false)} className={cx('xemtop100')}> Quốc tế</span>
+                <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    <button onClick={() => setvietnam(true)} className={cx('xemtop1001')} autoFocus > Việt Nam</button>
+                    <button onClick={() => setvietnam(false)} className={cx('xemtop1001')}> Quốc tế</button>
                 </div>
                 {vietnam ? <Vietnam /> : <Quocte />}
             </div>
@@ -47,7 +83,8 @@ function Home() {
                 <Row style={{ display: 'flex' }} >
                     {Item.home[4] && Item.home[4].items.slice(0, 4).map((res, index) => (
                         <div lg={3} className={cx('content')}>
-                            <img src={res.thumbnailM} />
+                            <Link to='/album' onClick={() => Item.setAlbum(Item.home[4].items[index].encodeId)} > <img  src={res.thumbnailM} /></Link>
+                           
                             <h5>{res.title}</h5>
                             <p>{res.sortDescription}</p>
                         </div>
@@ -82,27 +119,73 @@ function Home() {
 
 
             </div>
+            <div className={cx('zingchartbody')} >
+
+                <div >
+                    <h3 className={cx('Zingchart')}>
+                        #Zingchart1
+                        <AiFillPlayCircle style={{ color: '#EF3494' }} />
+                    </h3>
+                </div>
+                <div style={{ marginTop: '30px' }}>
+                    {Item.loading && <ReactLoading type='spinningBubbles' height={300} width={200} />}
+                    {Item.List.slice(0, 3).map((res, index) => (
+                        <div key={index} className={cx('body1')}>
+                            <div value={index} onClick={() => {
+                                Item.setfooter(Item.List)
+                                Item.setcodeindex(index)
+                            }
+                            } className={cx('media')}>
+                                <span className={cx('index')}>{index + 1}</span>
+                                <div >
+                                    <img className={cx('img')} src={res.thumbnailM} />
+                                </div>
+                                <div className={cx('iteam-wrapper')}>
+                                    <span >{res.title} </span><br>
+                                    </br>
+                                    <span className={cx('children')}> {res.artistsNames} </span>
+
+                                </div>
+                            </div>
+
+
+                            <div>
+                                {res.duration}
+                            </div>
+                        </div>
+                    ))}
+                    {!Item.loading && top100 && <Link to='/zingchart' className={cx('xemtop100')} onClick={() => {
+                        setPagination(100)
+                        settop100(false)
+                    }}>Xem Thêm</Link>}
+
+
+                </div>
+            </div>
+
 
             <div className={cx('container')}>
-                <h4>top100</h4>
+                <h4>Top 100</h4>
                 <Row style={{ display: 'flex' }} >
-                    {Item.home[10] && Item.home[10].items.slice(0, 4).map((res, index) => (
+                    {home3[4] && home3[4].items.slice(0, 4).map((res, index) => (
                         <div lg={3} className={cx('content')}>
-                            <img src={res.thumbnailM} />
+                            <Link to='/album' onClick={() => Item.setAlbum(home3[2].items[index].encodeId)} >  <img  src={res.thumbnailM} /></Link>
                             <h5>{res.title}</h5>
-                            <p>{res.sortDescription.slice(0, 100)}</p>
+                            <p>{res.sortDescription.slice(0, 70)}...</p>
                         </div>
                     ))}
 
                 </Row>
             </div>
 
+
             <div className={cx('container')}>
-                <h4>top100</h4>
+                <h4>XONE's CORNER</h4>
                 <Row style={{ display: 'flex' }} >
-                    {Item.home[14] && Item.home[14].items.slice(0, 4).map((res, index) => (
+                    {home5[0] && home5[0].items.slice(0, 4).map((res, index) => (
                         <div lg={3} className={cx('content')}>
-                            <img src={res.thumbnailM} />
+                            <Link to='/album' onClick={() => Item.setAlbum(home5[0].items[index].encodeId)} > <img src={res.thumbnailM} /></Link>
+                           
                             <h5>{res.title}</h5>
                             <p>{res.sortDescription}</p>
                         </div>

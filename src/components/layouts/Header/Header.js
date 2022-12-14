@@ -10,14 +10,14 @@ import 'tippy.js/dist/tippy.css'; // optional
 import Wapper from './Wapper';
 import Theme from './Theme';
 import Tippys from '@tippyjs/react/headless';
-import { FiArrowLeft, FiArrowRight, FiSettings } from 'react-icons/fi';
+import { FiArrowLeft, FiArrowRight, FiSettings ,FiTrendingUp } from 'react-icons/fi';
 import { TfiSearch } from 'react-icons/tfi';
 import { MdClear } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs'
 import { instance } from '../../../uttils/request';
 import { Link } from 'react-router-dom';
 import ReactLoading from 'react-loading';
-import { faL } from '@fortawesome/free-solid-svg-icons';
+import { HiArrowTrendingUp } from 'react-icons/hi';
 
 
 
@@ -61,7 +61,7 @@ function Header() {
     useEffect(() => {
         if (debouce == '') return;
 
-        instance.get(`/getDataSearch/q=${debouce}`)
+        instance.get(`/api/search?keyword=${debouce}`)
             .then(res => setSearch(res.data.data.songs))
     }, [debouce])
 
@@ -111,13 +111,13 @@ function Header() {
 
                                             {valueinput ? <p>Từ khoá liên quan</p> : <p>Đề xuất cho bạn</p>}
                                             {!valueinput && Item.playlist &&
-                                                Item.playlist.map((res, index) => (
+                                                Item.List.map((res, index) => (
                                                     <div key={index} onClick={() => {
-                                                        Item.setfooter(Item.playlist)
+                                                        Item.setfooter(Item.List)
                                                         Item.setcodeindex(index)
                                                         hide()
                                                     }
-                                                    } >{res.title}</div>
+                                                    } >   <FiTrendingUp /> <span>{res.title} </span> </div>
                                                 ))}
                                                  { Item.loading &&  <ReactLoading type='spinningBubbles' height={300} width={200} />}
                                             {search && valueinput &&
@@ -128,22 +128,17 @@ function Header() {
                                                             setValueinput('');
                                                             hide()
                                                             setIconclear(false)
-                                                        }} key={index} ><p  > {res.title}</p> </Link>
-                                                        
-                                                         </div>
-                                                ))}
+                                                        }} key={index} >   <TfiSearch /> <span  > {res.title}</span> </Link>
+                                                         </div>))}
                                         </div>
                                     </Wapper>
                                 </div>
                             </div>
                         )}>
-
                         <div className={cx('input')}>
                             <button onClick={() => {
                                 inputfocus.current.focus()
-                                show()
-
-                            }
+                                show()}
                             } type='button' >
                                 <TfiSearch />
                             </button>
@@ -184,20 +179,12 @@ function Header() {
                                     <FiSettings />
                                 </button>
                             </Tippy>
-
                         </div>
-
-
-
                     </div>
-
                 </div>
             </div>
         </div>
-
-
     )
-
 }
 
 export default Header;

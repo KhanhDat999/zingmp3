@@ -9,6 +9,7 @@ import Abbum from "../pages/ Private/Libery/Abum";
 import Mv from "../pages/ Private/Libery/Mv";
 import {Routes, Route } from "react-router-dom";
 import Search from "../pages/ all searches/All";
+import Album from "../pages/Album";
 
 
 function Index() {
@@ -28,6 +29,7 @@ function Index() {
                 <Route path='/following' element={<Following />} />
                 <Route path='/search' element={<Search />} />
                 <Route path='/zingchart' element={<Zingchart />} />
+                <Route path='/album' element={<Album />} />
 
             </Routes>
 

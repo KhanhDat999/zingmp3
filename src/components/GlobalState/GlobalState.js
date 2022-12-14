@@ -8,63 +8,50 @@ import axios from 'axios'
 export const Global = createContext()
 
 function GlobalState({ children }) {
-
+    const [album, setAlbum] = useState( )
     const [playlist, setPlaylist] = useState([])
     const [List, SetList] = useState([])
     const [codeindex, setcodeindex] = useState()
     const [baihat, setbaihat] = useState([])
     const [footer, setfooter] = useState([])
     const [loading, setloading] = useState(true)
-    const [ yeuthichs , setyeuthich ] = useState([])
-    const [ home , setHome] = useState([])
+    const [yeuthichs, setyeuthich] = useState([])
+    const [home, setHome] = useState([])
 
 
-    const yeuthich = () =>{
 
-        axios.get(`https://632d221d0d7928c7d2455e19.mockapi.io/todolist/listzingmp3`)
-        .then(res => setyeuthich(res.data))
-    }
-    
 
-    
-    useEffect(() =>{
-        getHome()
-        yeuthich()
-      },[])
 
-      const getHome = async() =>{
-
-        const res = await instance.get(`/getHome`)
+    const getHome = async () => {
+        const res = await instance.get(`/api/home?page=1`)
         setHome(res.data.data.items)
+    }
+  
 
-      }
 
-
-     console.log(home)
     const getdata = async () => {
 
 
-        const api = await instance.get(`/getListChart100/`)
+        const api = await instance.get(`/api/charthome`)
+
         SetList(api.data.data.RTChart.items)
         setloading(false)
 
     }
-    
-    const getplaylisst = async () => {
-        
-        const res = await instance.get('/getPlayList/Z6WZWIAC ')
-        setPlaylist(res.data.data.items)
-       
-        
-    }
+
+ 
+ 
     useEffect(() => {
+        getHome()
         getdata()
-        getplaylisst()
+    
     }, [])
 
 
 
     const value = {
+        album,
+        setAlbum,
         setcodeindex,
         codeindex,
         List,
@@ -75,8 +62,6 @@ function GlobalState({ children }) {
         footer,
         setfooter,
         loading,
-        yeuthich,
-        yeuthichs,
         home
     }
 

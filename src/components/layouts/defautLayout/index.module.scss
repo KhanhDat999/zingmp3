@@ -26,7 +26,11 @@
     
     
 }
-
+::-webkit-scrollbar {
+  width: 6px;
+  // color: #575F6C;
+  // background-color: #2F4157;
+} 
 
 .children{ 
   //  background-color: red;

@@ -5,11 +5,11 @@ import reportWebVitals from './reportWebVitals';
 import GlobalState from './components/GlobalState/GlobalState';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+ 
       <GlobalState >
         <App />
       </GlobalState>
-  </React.StrictMode>
+
 );
 
 // If you want to start measuring performance in your app, pass a function

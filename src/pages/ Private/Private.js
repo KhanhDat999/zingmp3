@@ -5,6 +5,8 @@ import { AiFillPlayCircle } from 'react-icons/ai'
 import classNames from 'classnames/bind';
 import styles from './Private.module.scss'
 import { Link , Outlet } from 'react-router-dom';
+import { useEffect , useState } from 'react';
+
 
 
 
@@ -12,6 +14,7 @@ const cx = classNames.bind(styles)
 
 function Private() {
     
+  
     
     return (
         <div className={cx('body')} >
