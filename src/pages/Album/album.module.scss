@@ -63,7 +63,17 @@ body {
         ;
     }
 }
+.icon{
+    height: 500px;
+    width: 300px;
+    margin-left: 200px;
+    animation : example 1.5s 10;
+}
 
+@keyframes example {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+  }
 
 .Zingchart {
 

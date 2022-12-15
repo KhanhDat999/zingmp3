@@ -1,6 +1,6 @@
 import styles from './album.module.scss';
 import classNames from 'classnames/bind';
-import { AiFillPlayCircle, AiOutlineHeart, AiFillStepBackward, AiOutlinePauseCircle, AiOutlinePlayCircle } from 'react-icons/ai'
+import { AiFillPlayCircle, AiOutlineHeart, AiOutlineLoading3Quarters, AiOutlinePauseCircle, AiOutlinePlayCircle } from 'react-icons/ai'
 import { instance } from '../../uttils/request';
 import { useRef, useState, useEffect, useContext, memo } from 'react';
 import { Global } from '../../components/GlobalState/GlobalState';
@@ -25,7 +25,7 @@ function Album() {
         instance.get(`/api/detailplaylist?id=${Item.album}`)
             .then(res => {
                 if(res.data.data === undefined) {
-                    alert()
+                    alert('Lỗi album')
                      return;
                 }
                 else{
@@ -41,7 +41,11 @@ function Album() {
 
     return (
         <div>
+            {
+                !hien &&
 
+  <AiOutlineLoading3Quarters   className={cx('icon')} />
+            }
 
             <div>
 
@@ -81,10 +85,15 @@ function Album() {
                         </div>
                     </div>
                 ))}
-                {!Item.loading && top100 && <button className={cx('xemtop100')} onClick={() => {
-                    setPagination(100)
-                    settop100(false)
-                }}>Xem Thêm</button>}
+                {
+                    hien &&
+
+                    <button className={cx('xemtop100')} onClick={() => {
+                         setPagination(100)
+                         settop100(false)
+                     }}>Xem Thêm</button>
+
+                }
 
             </div>
 

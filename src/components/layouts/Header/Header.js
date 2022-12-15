@@ -17,7 +17,7 @@ import { BsUpload } from 'react-icons/bs'
 import { instance } from '../../../uttils/request';
 import { Link } from 'react-router-dom';
 import ReactLoading from 'react-loading';
-import { HiArrowTrendingUp } from 'react-icons/hi';
+import { AiFillPlayCircle, AiOutlineLoading3Quarters} from 'react-icons/ai'
 
 
 
@@ -109,7 +109,7 @@ function Header() {
                                     <Wapper>
                                         <div className={cx('content')}>
 
-                                            {valueinput ? <p>Từ khoá liên quan</p> : <p>Đề xuất cho bạn</p>}
+                                            {valueinput ?   <p>Từ khoá liên quan</p> : <p>Đề xuất cho bạn</p>}
                                             {!valueinput && Item.playlist &&
                                                 Item.List.map((res, index) => (
                                                     <div key={index} onClick={() => {
@@ -119,7 +119,7 @@ function Header() {
                                                     }
                                                     } >   <FiTrendingUp /> <span>{res.title} </span> </div>
                                                 ))}
-                                                 { Item.loading &&  <ReactLoading type='spinningBubbles' height={300} width={200} />}
+                                                 { Item.loading && <AiOutlineLoading3Quarters   className={cx('icon')} />}
                                             {search && valueinput &&
                                                 search.map((res, index) => (
                                                     <div>
@@ -154,9 +154,9 @@ function Header() {
                         <div className={cx('iconleverright')}>
 
                             <Tippy content="Chủ đề">
-                                <button>
+                                {/* <button>
                                     <Theme />
-                                </button>
+                                </button> */}
                             </Tippy>
                         </div>
                         <div className={cx('iconleverright')}>

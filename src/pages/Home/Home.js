@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col'
 import { MdArrowBackIosNew } from 'react-icons/md'
 import Vietnam from './vn&qt/Vietnam';
 import Quocte from './vn&qt/Quocte';
-import { AiFillPlayCircle, AiOutlineHeart, AiFillStepBackward, AiOutlinePauseCircle, AiOutlinePlayCircle } from 'react-icons/ai'
+import { AiFillPlayCircle, AiOutlineLoading3Quarters, AiOutlinePlayCircle } from 'react-icons/ai'
 import { instance } from '../../uttils/request';
 import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom'
@@ -41,26 +41,35 @@ function Home() {
             }
         }, 5000);
     }, [index])
-useEffect(() =>{
+    useEffect(() => {
 
-    instance.get('/api/home?page=5')
-    .then(res => setHome5(res.data.data.items))
+        instance.get('/api/home?page=5')
+            .then(res => setHome5(res.data.data.items))
 
-},[])
-useEffect(() =>{
-    instance.get('/api/home?page=3')
-   
-    .then(res => setHome3(res.data.data.items))
-},[])
+    }, [])
+    useEffect(() => {
+        instance.get('/api/home?page=3')
+
+            .then(res => setHome3(res.data.data.items))
+    }, [])
 
 
-console.log(home5)
+    console.log(home3)
 
 
     return (
 
         <div >
+
+
+
+
             <div >
+                {
+                    !Item.home[0] &&
+
+            <AiOutlineLoading3Quarters   className={cx('icon1')} />
+                }
 
                 {Item.home[0] &&
                     <Row className={cx('header')} lg={3} sm={2}>
@@ -70,101 +79,108 @@ console.log(home5)
                     </Row>
                 }
             </div>
-            <div className={cx('body')}>
-                <h4>Mới Phát Hành</h4>
-                <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-                    <button onClick={() => setvietnam(true)} className={cx('xemtop1001')} autoFocus > Việt Nam</button>
-                    <button onClick={() => setvietnam(false)} className={cx('xemtop1001')}> Quốc tế</button>
+            {
+                Item.home[0] &&
+                <div className={cx('body')}>
+                    <h4>Mới Phát Hành</h4>
+                    <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                        <button onClick={() => setvietnam(true)} className={cx('xemtop1001')} autoFocus > Việt Nam</button>
+                        <button onClick={() => setvietnam(false)} className={cx('xemtop1001')}> Quốc tế</button>
+                    </div>
+                    {vietnam ? <Vietnam /> : <Quocte />}
                 </div>
-                {vietnam ? <Vietnam /> : <Quocte />}
-            </div>
-            <div className={cx('container')}>
-                <h4>Giai điệu ký ức</h4>
-                <Row style={{ display: 'flex' }} >
-                    {Item.home[4] && Item.home[4].items.slice(0, 4).map((res, index) => (
-                        <div lg={3} className={cx('content')}>
-                            <Link to='/album' onClick={() => Item.setAlbum(Item.home[4].items[index].encodeId)} > <img  src={res.thumbnailM} /></Link>
-                           
-                            <h5>{res.title}</h5>
-                            <p>{res.sortDescription}</p>
-                        </div>
-                    ))}
 
+            }
 
-                </Row>
-            </div>
+            {
 
-            <div className={cx('container')}>
-                <h4>Nhạc Mới Mỗi Ngày</h4>
-                <Row style={{ display: 'flex' }} >
-                    {Item.home[6] && Item.home[6].items.slice(0, 4).map((res, index) => (
-                        <div lg={3} className={cx('content')}>
-                            <img src={res.thumbnailM} />
-                            <h5>{res.title}</h5>
-                            <p>{res.sortDescription}</p>
-                        </div>
-                    ))}
+                Item.home[0] &&
 
-                </Row>
-            </div>
+                <div className={cx('container')}>
+                    <h4>Giai điệu ký ức</h4>
+                    <Row style={{ display: 'flex' }} >
+                        {Item.home[4] && Item.home[4].items.slice(0, 4).map((res, index) => (
+                            <div lg={3} className={cx('content')}>
+                                <Link to='/album' onClick={() => Item.setAlbum(Item.home[4].items[index].encodeId)} >
 
+                                    <div className={cx('hover')}>
+                                        <AiOutlinePlayCircle className={cx('icon')} />
+
+                                    </div>
+                                    <img src={res.thumbnailM} /></Link>
+
+                                <h5>{res.title}</h5>
+                                <p>{res.sortDescription}</p>
+                            </div>
+                        ))}
+                    </Row>
+                </div>
+            }
+            {/* {
+                Item.home[0] &&
+                <div className={cx('container')}>
+                    <h4>Nhạc Mới Mỗi Ngày</h4>
+                    <Row style={{ display: 'flex' }} >
+                        {Item.home[6] && Item.home[6].items.slice(0, 4).map((res, index) => (
+                            <div lg={3} className={cx('content')}>
+                                <img src={res.thumbnailM} />
+                                <h5>{res.title}</h5>
+                                <p>{res.sortDescription}</p>
+                            </div>
+                        ))}
+                    </Row>
+                </div>
+            } */}
             <div className={cx('container1')}>
                 <Row>
                     {Item.home[8] && Item.home[8].items.map((res, index) => (
                         <Col> <img src={res.banner} /></Col>
-
                     ))}
                 </Row>
-
-
-
             </div>
-            <div className={cx('zingchartbody')} >
-
-                <div >
-                    <h3 className={cx('Zingchart')}>
-                        #Zingchart1
-                        <AiFillPlayCircle style={{ color: '#EF3494' }} />
-                    </h3>
-                </div>
-                <div style={{ marginTop: '30px' }}>
-                    {Item.loading && <ReactLoading type='spinningBubbles' height={300} width={200} />}
-                    {Item.List.slice(0, 3).map((res, index) => (
-                        <div key={index} className={cx('body1')}>
-                            <div value={index} onClick={() => {
-                                Item.setfooter(Item.List)
-                                Item.setcodeindex(index)
-                            }
-                            } className={cx('media')}>
-                                <span className={cx('index')}>{index + 1}</span>
-                                <div >
-                                    <img className={cx('img')} src={res.thumbnailM} />
+            {
+                Item.home[0] &&
+                <div className={cx('zingchartbody')} >
+                    <div >
+                        <h3 className={cx('Zingchart')}>
+                            #Zingchart1
+                            <AiFillPlayCircle style={{ color: '#EF3494' }} />
+                        </h3>
+                    </div>
+                    <div style={{ marginTop: '30px' }}>
+                       
+                        {Item.List.slice(0, 3).map((res, index) => (
+                            <div key={index} className={cx('body1')}>
+                                <div value={index} onClick={() => {
+                                    Item.setfooter(Item.List)
+                                    Item.setcodeindex(index)
+                                }
+                                } className={cx('media')}>
+                                    <span className={cx('index')}>{index + 1}</span>
+                                    <div >
+                                        <img className={cx('img')} src={res.thumbnailM} />
+                                    </div>
+                                    <div className={cx('iteam-wrapper')}>
+                                        <span >{res.title} </span><br>
+                                        </br>
+                                        <span className={cx('children')}> {res.artistsNames} </span>
+                                    </div>
                                 </div>
-                                <div className={cx('iteam-wrapper')}>
-                                    <span >{res.title} </span><br>
-                                    </br>
-                                    <span className={cx('children')}> {res.artistsNames} </span>
-
+                                <div>
+                                    {res.duration}
                                 </div>
                             </div>
-
-
-                            <div>
-                                {res.duration}
-                            </div>
-                        </div>
-                    ))}
-                    {!Item.loading && top100 && <Link to='/zingchart' className={cx('xemtop100')} onClick={() => {
-                        setPagination(100)
-                        settop100(false)
-                    }}>Xem Thêm</Link>}
-
-
+                        ))}
+                        {Item.List && <Link to='/zingchart' className={cx('xemtop100')} onClick={() => {
+                            setPagination(100)
+                            settop100(false)
+                        }}>Xem Thêm</Link>}
+                    </div>
                 </div>
-            </div>
+            }
 
 
-            <div className={cx('container')}>
+            {/* <div className={cx('container')}>
                 <h4>Top 100</h4>
                 <Row style={{ display: 'flex' }} >
                     {home3[4] && home3[4].items.slice(0, 4).map((res, index) => (
@@ -176,23 +192,34 @@ console.log(home5)
                     ))}
 
                 </Row>
-            </div>
+            </div> */}
 
+            {
+                Item.home[0] &&
 
-            <div className={cx('container')}>
-                <h4>XONE's CORNER</h4>
-                <Row style={{ display: 'flex' }} >
-                    {home5[0] && home5[0].items.slice(0, 4).map((res, index) => (
-                        <div lg={3} className={cx('content')}>
-                            <Link to='/album' onClick={() => Item.setAlbum(home5[0].items[index].encodeId)} > <img src={res.thumbnailM} /></Link>
-                           
-                            <h5>{res.title}</h5>
-                            <p>{res.sortDescription}</p>
-                        </div>
-                    ))}
+                <div className={cx('container')}>
+                    <h4>XONE's CORNER</h4>
+                    <Row style={{ display: 'flex' }} >
+                        {home5[0] && home5[0].items.slice(0, 4).map((res, index) => (
+                            <div lg={3} className={cx('content')}>
+                                <Link to='/album' onClick={() => Item.setAlbum(home5[0].items[index].encodeId)} >
+                                    <div className={cx('hover')}>
+                                        <AiOutlinePlayCircle className={cx('icon')} />
 
-                </Row>
-            </div>
+                                    </div>
+
+                                    <img src={res.thumbnailM} />
+                                </Link>
+
+                                <h5>{res.title}</h5>
+                                <p>{res.sortDescription}</p>
+                            </div>
+                        ))}
+
+                    </Row>
+                </div>
+
+            }
         </div>
 
 

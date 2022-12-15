@@ -1,5 +1,5 @@
 import styles from './Zingchart.module.scss';
-import { AiFillPlayCircle, AiOutlineHeart, AiFillStepBackward, AiOutlinePauseCircle, AiOutlinePlayCircle } from 'react-icons/ai'
+import { AiFillPlayCircle, AiOutlineLoading3Quarters} from 'react-icons/ai'
 import classNames from 'classnames/bind';
 import { instance } from '../../uttils/request';
 import { useRef, useState, useEffect, useContext, memo } from 'react';
@@ -36,9 +36,10 @@ function Zingchart() {
                     #Zingchart1
                     <AiFillPlayCircle style={{ color: '#EF3494' }} />
                 </h3>
+                   
             </div>
             <div style={{ marginTop : '30px'}}>
-                {Item.loading && <ReactLoading type='spinningBubbles' height={300} width={200} />}
+                {Item.loading && <AiOutlineLoading3Quarters   className={cx('icon')} />}
                 {  Item.List.slice(0, pagination).map((res, index) => (
                     <div key={index} className={cx('body')}>
                         <div value={index} onClick={() => {
