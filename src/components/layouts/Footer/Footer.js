@@ -37,8 +37,11 @@ function Footer() {
   const [pause, setPause] = useState(false);
   const [volume, setVolume] = useState(true);
   const [inputvl, setInputvl] = useState('0');
+  const [giay, setGiay] = useState(0)
+  const [phuts, setPhuts] = useState(0)
   const [duration, setDuration] = useState('00:00');
   const [currentTimes, setCurrentTime] = useState('00:00');
+  const [phut, setPhut] = useState()
   const [heart, setHeart] = useState(true)
   const [volumes, setvolumes] = useState()
 
@@ -97,13 +100,18 @@ function Footer() {
 
   const timeUpdate = () => {
     if (audio.current.duration) {
+      if (giay == 60) setPhuts(phuts + 1)
+      setGiay(Math.floor(audio.current.currentTime))
+      const current = Math.floor(audio.current.duration / 60)
+      setCurrentTime(current)
+      setPhut(Math.floor(audio.current.duration - current * 60))
 
-      setCurrentTime(Math.round(audio.current.currentTime / 100))
       setDuration(Math.round(audio.current.duration * 10) / 600)
       setInputvl(Math.floor(audio.current.currentTime / audio.current.duration * 300))
 
     }
   }
+
 
   const ocChange = (e) => {
     handlePause()
@@ -145,7 +153,7 @@ function Footer() {
 
   const Heart = async (...props) => {
 
-    console.log(props)
+
 
     const cart = localStorage.getItem("heart") ? JSON.parse(localStorage.getItem("heart")) : []
 
@@ -255,10 +263,10 @@ function Footer() {
                 </div>
                 <div className={cx('leveritem')}>
 
-                  <span> {currentTimes}</span>
+                  <span> {phuts} : {giay}</span>
                   <audio onTimeUpdate={timeUpdate} ref={audio} type="audio/mpeg" src={src} autoPlay ></audio>
                   <input onMouseUp={() => handlePlay()} onChange={ocChange} className={cx('inputrange')} type="range" step='1' min="0" value={inputvl} max="300" />
-                  <span>  </span>
+                  <span> {currentTimes} : {phut} </span>
                 </div>
               </div>
             </div>
