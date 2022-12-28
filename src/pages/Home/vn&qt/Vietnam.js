@@ -14,7 +14,7 @@ function Vietnam() {
     const Item = useContext(Global)
     return (
         <>
-            <div style={{ display: 'flex' }} >
+            {/* <div style={{ display: 'flex' }} >
                 <Row xs={10} sm={6} lg={3} >
                     {Item.home[0] && Item.home[3].items.vPop.slice(0, 4).map((res, index) => (
 
@@ -62,7 +62,7 @@ function Vietnam() {
                         </div>
                     ))}
                 </Row>
-            </div>
+            </div> */}
 
         </>
 

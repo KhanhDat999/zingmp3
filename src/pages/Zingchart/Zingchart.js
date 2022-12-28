@@ -22,7 +22,10 @@ function Zingchart() {
     const [ top100 , settop100] = useState(true)
   
 
+useEffect(() =>{
+   
 
+})
   
 
 
@@ -61,7 +64,8 @@ function Zingchart() {
 
                         
                         <div>
-                            {res.duration}
+                            { Math.floor(res.duration / 60) }:
+                            {Math.floor(res.duration % 60)}
                         </div>
                     </div>
                 ))}

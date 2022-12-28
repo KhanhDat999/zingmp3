@@ -37,11 +37,11 @@ function Footer() {
   const [pause, setPause] = useState(false);
   const [volume, setVolume] = useState(true);
   const [inputvl, setInputvl] = useState('0');
-  const [giay, setGiay] = useState(0)
+  const [giay, setGiay] = useState('0')
   const [phuts, setPhuts] = useState(0)
   const [duration, setDuration] = useState('00:00');
-  const [currentTimes, setCurrentTime] = useState('00:00');
-  const [phut, setPhut] = useState()
+  const [currentTimes, setCurrentTime] = useState('0');
+  const [phut, setPhut] = useState('0')
   const [heart, setHeart] = useState(true)
   const [volumes, setvolumes] = useState()
 
@@ -100,15 +100,25 @@ function Footer() {
 
   const timeUpdate = () => {
     if (audio.current.duration) {
-      if (giay == 60) setPhuts(phuts + 1)
+
+
       setGiay(Math.floor(audio.current.currentTime))
       const current = Math.floor(audio.current.duration / 60)
+      let phut = Math.floor(audio.current.duration % 60)
+      if (phut.toString().length === 1) {
+        phut = '0' + phut
+      }
       setCurrentTime(current)
-      setPhut(Math.floor(audio.current.duration - current * 60))
-
+      setPhut(phut)
+      
       setDuration(Math.round(audio.current.duration * 10) / 600)
       setInputvl(Math.floor(audio.current.currentTime / audio.current.duration * 300))
-
+      setPhuts(Math.floor(audio.current.currentTime / 60))
+      let minutes = Math.floor(audio.current.currentTime % 60)
+      if (minutes.toString().length === 1) {
+        minutes = '0' + minutes
+      }
+      setGiay(minutes)
     }
   }
 
@@ -177,6 +187,9 @@ function Footer() {
     }
 
   }
+
+
+
 
   return (
     <>
@@ -266,7 +279,7 @@ function Footer() {
                   <span> {phuts} : {giay}</span>
                   <audio onTimeUpdate={timeUpdate} ref={audio} type="audio/mpeg" src={src} autoPlay ></audio>
                   <input onMouseUp={() => handlePlay()} onChange={ocChange} className={cx('inputrange')} type="range" step='1' min="0" value={inputvl} max="300" />
-                  <span> {currentTimes} : {phut} </span>
+                  <span> {currentTimes} <span>:</span> {phut} </span>
                 </div>
               </div>
             </div>

@@ -92,7 +92,7 @@ function Home() {
 
             }
 
-            {
+            {/* {
 
                 Item.home[0] &&
 
@@ -115,7 +115,7 @@ function Home() {
                         ))}
                     </Row>
                 </div>
-            }
+            } */}
             {/* {
                 Item.home[0] &&
                 <div className={cx('container')}>
