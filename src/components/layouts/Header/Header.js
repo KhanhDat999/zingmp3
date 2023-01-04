@@ -61,7 +61,7 @@ function Header() {
     useEffect(() => {
         if (debouce == '') return;
 
-        instance.get(`/api/search?keyword=${debouce}`)
+        instance.get(`/search?keyword=${debouce}`)
             .then(res => setSearch(res.data.data.songs))
     }, [debouce])
 

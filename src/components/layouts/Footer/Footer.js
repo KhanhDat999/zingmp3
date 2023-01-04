@@ -37,11 +37,11 @@ function Footer() {
   const [pause, setPause] = useState(false);
   const [volume, setVolume] = useState(true);
   const [inputvl, setInputvl] = useState('0');
-  const [giay, setGiay] = useState('0')
+  const [giay, setGiay] = useState('00')
   const [phuts, setPhuts] = useState(0)
   const [duration, setDuration] = useState('00:00');
   const [currentTimes, setCurrentTime] = useState('0');
-  const [phut, setPhut] = useState('0')
+  const [phut, setPhut] = useState('00')
   const [heart, setHeart] = useState(true)
   const [volumes, setvolumes] = useState()
 
@@ -73,14 +73,14 @@ function Footer() {
       setPause(false)
       setLoading(true)
       setplay(false)
-      const apis = await instance.get(`/api/song?id=${Item.footer[Item.codeindex].encodeId}`)
+      const apis = await instance.get(`/song?id=${Item.footer[Item.codeindex].encodeId}`)
 
       setSrc(apis.data.data[128])
       setPause(true)
       setLoading(false)
     }
     catch {
-      toast.error("Bài hát chưa có trên hệ thống")
+      toast.error("Bài hát chỉ dành cho tài khoản vip")
       Item.setcodeindex('')
       setSrc('')
     }
@@ -171,7 +171,7 @@ function Footer() {
       return res.title == props[1]
     })
 
-    if (abc == true) toast.error("Sản phẩm đã được thêm vào giỏ hàng")
+    if (abc == true) toast.error("Đã thêm bài hát vào yêu thích")
     else {
 
       cart.push({
@@ -183,7 +183,7 @@ function Footer() {
 
       })
       localStorage.setItem("heart", JSON.stringify(cart))
-      toast.success('Đã thêm sản phẩm vào giỏ hàng')
+      toast.success('Đã xoá bài hát ')
     }
 
   }

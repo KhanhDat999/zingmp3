@@ -22,6 +22,7 @@ function Home() {
 
     const Item = useContext(Global)
 
+    
     const [index, setIndex] = useState(2)
     const [banner, setBanner] = useState([])
     const [home5, setHome5] = useState([])
@@ -30,6 +31,8 @@ function Home() {
     const [pagination, setPagination] = useState(10)
     const [top100, settop100] = useState(true)
 
+
+ 
 
     useEffect(() => {
         setTimeout(() => {
@@ -43,34 +46,29 @@ function Home() {
     }, [index])
     useEffect(() => {
 
-        instance.get('/api/home?page=5')
+        instance.get('/home?page=5')
             .then(res => setHome5(res.data.data.items))
 
     }, [])
     useEffect(() => {
-        instance.get('/api/home?page=3')
+        instance.get('/home?page=3')
 
             .then(res => setHome3(res.data.data.items))
+     
     }, [])
 
 
-    console.log(home3)
+// console.log(Item.home[11].items)
 
 
     return (
 
         <div >
-
-
-
-
             <div >
                 {
                     !Item.home[0] &&
-
             <AiOutlineLoading3Quarters   className={cx('icon1')} />
                 }
-
                 {Item.home[0] &&
                     <Row className={cx('header')} lg={3} sm={2}>
                         <Link to='/album' > <Col onClick={() => Item.setAlbum(Item.home[0].items[index].encodeId)} className={cx('img1')}  ><img xs={10} sm={6} lg={3} src={Item.home[0].items[index - 2].banner} /> </Col></Link>
@@ -90,6 +88,28 @@ function Home() {
                     {vietnam ? <Vietnam /> : <Quocte />}
                 </div>
 
+            }
+            {
+
+Item.home[0] &&
+              <div className={cx('container')}>
+                <h4>Nghe là thấy tết</h4>
+                <Row style={{ display: 'flex' }} >
+                    {Item.home[4].items && Item.home[4].items.slice(0, 4).map((res, index) => (
+                        <div lg={3} className={cx('content')}>
+                            <Link to='/album' onClick={() => Item.setAlbum(Item.home[4].items[index].encodeId)} >
+                                    <div className={cx('hover')}>
+                                        <AiOutlinePlayCircle className={cx('icon')} />
+                                    </div>
+                                    <img src={res.thumbnailM} />
+                                </Link>
+                            <h5>{res.title}</h5>
+                            <p>{res.sortDescription.slice(0, 70)}...</p>
+                        </div>
+                    ))}
+
+                </Row>
+            </div>
             }
 
             {/* {
@@ -116,21 +136,27 @@ function Home() {
                     </Row>
                 </div>
             } */}
-            {/* {
-                Item.home[0] &&
+            {
+                Item.home[7] &&
                 <div className={cx('container')}>
                     <h4>Nhạc Mới Mỗi Ngày</h4>
                     <Row style={{ display: 'flex' }} >
-                        {Item.home[6] && Item.home[6].items.slice(0, 4).map((res, index) => (
+                        {Item.home[7] && Item.home[7].items.slice(0, 4).map((res, index) => (
                             <div lg={3} className={cx('content')}>
-                                <img src={res.thumbnailM} />
+                                 <Link to='/album' onClick={() => Item.setAlbum(Item.home[7].items[index].encodeId)} >
+                                    <div className={cx('hover')}>
+                                        <AiOutlinePlayCircle className={cx('icon')} />
+                                    </div>
+                                    <img src={res.thumbnailM} />
+                                </Link>
+                               
                                 <h5>{res.title}</h5>
                                 <p>{res.sortDescription}</p>
                             </div>
                         ))}
                     </Row>
                 </div>
-            } */}
+            }
             <div className={cx('container1')}>
                 <Row>
                     {Item.home[8] && Item.home[8].items.map((res, index) => (
@@ -179,20 +205,29 @@ function Home() {
                 </div>
             }
 
+{
 
-            {/* <div className={cx('container')}>
+Item.home[11] &&
+            <div className={cx('container')}>
                 <h4>Top 100</h4>
                 <Row style={{ display: 'flex' }} >
-                    {home3[4] && home3[4].items.slice(0, 4).map((res, index) => (
+                    {Item.home[11].items && Item.home[11].items.slice(0, 4).map((res, index) => (
                         <div lg={3} className={cx('content')}>
-                            <Link to='/album' onClick={() => Item.setAlbum(home3[2].items[index].encodeId)} >  <img  src={res.thumbnailM} /></Link>
+                            <Link to='/album' onClick={() => Item.setAlbum(Item.home[11].items[index].encodeId)} >
+                                    <div className={cx('hover')}>
+                                        <AiOutlinePlayCircle className={cx('icon')} />
+                                    </div>
+                                    <img src={res.thumbnailM} />
+                                </Link>
                             <h5>{res.title}</h5>
                             <p>{res.sortDescription.slice(0, 70)}...</p>
                         </div>
                     ))}
 
                 </Row>
-            </div> */}
+            </div>
+
+}
 
             {
                 Item.home[0] &&
@@ -200,17 +235,14 @@ function Home() {
                 <div className={cx('container')}>
                     <h4>XONE's CORNER</h4>
                     <Row style={{ display: 'flex' }} >
-                        {home5[0] && home5[0].items.slice(0, 4).map((res, index) => (
+                        {Item.home[13].items && Item.home[13].items.slice(0, 4).map((res, index) => (
                             <div lg={3} className={cx('content')}>
-                                <Link to='/album' onClick={() => Item.setAlbum(home5[0].items[index].encodeId)} >
+                                <Link to='/album' onClick={() => Item.setAlbum(Item.home[13].items[index].encodeId)} >
                                     <div className={cx('hover')}>
                                         <AiOutlinePlayCircle className={cx('icon')} />
-
                                     </div>
-
                                     <img src={res.thumbnailM} />
                                 </Link>
-
                                 <h5>{res.title}</h5>
                                 <p>{res.sortDescription}</p>
                             </div>

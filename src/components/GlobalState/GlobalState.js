@@ -23,7 +23,7 @@ function GlobalState({ children }) {
 
 
     const getHome = async () => {
-        const res = await instance.get(`/api/home?page=1`)
+        const res = await instance.get(`/home`)
         setHome(res.data.data.items)
     }
   
@@ -32,7 +32,7 @@ function GlobalState({ children }) {
     const getdata = async () => {
 
 
-        const api = await instance.get(`/api/charthome`)
+        const api = await instance.get(`/charthome`)
 
         SetList(api.data.data.RTChart.items)
         setloading(false)
@@ -42,6 +42,7 @@ function GlobalState({ children }) {
  
  
     useEffect(() => {
+       
         getHome()
         getdata()
     

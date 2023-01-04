@@ -22,10 +22,10 @@ function Album() {
 
     useEffect(() => {
 
-        instance.get(`/api/detailplaylist?id=${Item.album}`)
+        instance.get(`/detailplaylist?id=${Item.album}`)
             .then(res => {
                 if(res.data.data === undefined) {
-                    alert('Lỗi album')
+                    alert('Bài hát cho tài khoản vip')
                      return;
                 }
                 else{

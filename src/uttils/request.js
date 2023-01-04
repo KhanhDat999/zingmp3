@@ -2,5 +2,5 @@ import axios from "axios";
 
 
 export const instance = axios.create({
-    baseURL: 'https://apizingmp3.vercel.app',
+    baseURL: 'https://api-zingmp3-vercel.vercel.app/api',
   });
