@@ -169,7 +169,7 @@ function Home() {
                     </div>
                 </div>
             }
-                    {Item.List && <Link to='/zingchart' className={cx('xemtop100')} onClick={() => {
+                    {Item.home[0] && <Link to='/zingchart' className={cx('xemtop100')} onClick={() => {
                         setPagination(100)
                         settop100(false)
                     }}>Xem Thêm</Link>}
