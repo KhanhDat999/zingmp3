@@ -157,13 +157,6 @@ function Header() {
                                 </button>
                             </Tippy>
                         </div>
-                        <div className={cx('iconleverright')}>
-                            <Tippy content="Cài đặt">
-                                <button>
-                                    <FiSettings />
-                                </button>
-                            </Tippy>
-                        </div>
                     </div>
                 </div>
             </div>
