@@ -11,14 +11,13 @@ const cx = classNames.bind(styles)
 
 function Sidebar() {
 
-
     return (
         <div>
             <div className={cx('body')}>
                 <div md={10} className={cx('zmp3logo')}>
                     <Link to='/'>
-                        <img className={styles.mp3logo1} src='https://www.apkmirror.com/wp-content/uploads/2017/06/5948853db395f.png' />
-                        <img className={styles.mp3logo} src='https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg' /></Link>
+                        <img className={styles.mp3logo1} alt='img' src='https://www.apkmirror.com/wp-content/uploads/2017/06/5948853db395f.png' />
+                        <img className={styles.mp3logo} alt='img' src='https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg' /></Link>
                 </div>
                 <div className={styles.zmnavbaritem}>
                     <Link to='/private'>

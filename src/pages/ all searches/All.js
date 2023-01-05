@@ -29,7 +29,7 @@ function Allsearch() {
                     }} className={cx('body')}>
                         <div className={cx('media')}>
                             <div >
-                                <img className={cx('img')} src={res.thumbnailM} />
+                                <img className={cx('img')} alt='img' src={res.thumbnailM} />
                             </div>
                             <div className={cx('iteam-wrapper')}>
                                 <span >{res.title} </span><br>

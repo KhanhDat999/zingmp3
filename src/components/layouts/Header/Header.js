@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'; // optional
 import Wapper from './Wapper';
-import Theme from './Theme';
 import Tippys from '@tippyjs/react/headless';
 import { FiArrowLeft, FiArrowRight, FiSettings ,FiTrendingUp } from 'react-icons/fi';
 import { TfiSearch } from 'react-icons/tfi';
@@ -16,16 +15,9 @@ import { MdClear } from 'react-icons/md';
 import { BsUpload } from 'react-icons/bs'
 import { instance } from '../../../uttils/request';
 import { Link } from 'react-router-dom';
-import ReactLoading from 'react-loading';
-import { AiFillPlayCircle, AiOutlineLoading3Quarters} from 'react-icons/ai'
-
-
-
-
-
+import { AiOutlineLoading3Quarters} from 'react-icons/ai'
 
 const cx = classNames.bind(styles)
-
 
 function Header() {
 
@@ -37,16 +29,8 @@ function Header() {
     const [search, setSearch] = useState([])
     const show = () => setVisible(true);
     const hide = () => setVisible(false);
-    const [codeindex, setcodeindex] = useState()
-    const [sing, setSing] = useState([])
-    const [disabled, setdisabled] = useState(true)
-
-
     const inputfocus = useRef();
     const navigate = useNavigate();
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-
-
 
     const handlInput = (e) => {
         setValueinput(e.target.value)

@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 // import { faShirt } from '@fortawesome/free-solid-svg-icons';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,9 +25,7 @@ function Theme({ openModal }) {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -38,9 +35,7 @@ function Theme({ openModal }) {
   function closeModal() {
     setIsOpen(false);
   }
-  function openModal() {
-    setIsOpen(true);
-  }
+
   return (
     <div>
       <div>

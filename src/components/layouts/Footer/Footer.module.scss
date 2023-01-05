@@ -25,7 +25,9 @@
 
     margin: 15px;
     display: flex;
-
+     svg{
+        margin-top: -7px;
+     }
     .img6464 {
         height: 64px;
         width: 64px;
@@ -73,10 +75,11 @@
         height: 50px;
 
         .item {
+            // background-color: red;
             display: flex;
             z-index: 2;
             left: 40%;
-            width: 248px;
+            width: 17.5vw;
             position: fixed;
             height: 50px;
             align-items: center;
@@ -88,7 +91,7 @@
                 height: 40px;
                 margin-bottom: 10px;
                 animation: Snipper 1.5s infinite linear;
-                
+
 
             }
 
@@ -132,10 +135,28 @@
             z-index: 2;
             bottom: 5px;
             height: 18px;
-            width: 400px;
+            width: 30vw;
 
-            .inputrange{
-                width: 80%;
+            .span1 {
+                position: absolute;
+               left: -20px;
+                float: left ;
+                top: -1px;
+            }
+            .span2{
+                position: absolute;
+                float: right;
+                right: -20px;
+                top: -1px;
+            }
+
+            .inputrange {
+                width: 90%;
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         }
     }

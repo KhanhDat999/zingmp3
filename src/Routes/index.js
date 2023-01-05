@@ -24,8 +24,6 @@ function Index() {
                     <Route path='abum' element={<Abbum />} />
                     <Route path='mv' element={<Mv />} />
                 </Route>
-
-
                 <Route path='/following' element={<Following />} />
                 <Route path='/search' element={<Search />} />
                 <Route path='/zingchart' element={<Zingchart />} />

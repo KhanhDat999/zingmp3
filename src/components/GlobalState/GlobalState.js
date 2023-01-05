@@ -1,9 +1,5 @@
-
 import { useState, createContext, useEffect } from 'react'
 import { instance } from '../../uttils/request'
-import axios from 'axios'
-
-
 
 export const Global = createContext()
 
@@ -15,7 +11,6 @@ function GlobalState({ children }) {
     const [baihat, setbaihat] = useState([])
     const [footer, setfooter] = useState([])
     const [loading, setloading] = useState(true)
-    const [yeuthichs, setyeuthich] = useState([])
     const [home, setHome] = useState([])
 
 

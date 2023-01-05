@@ -3,25 +3,19 @@ import {
   AiFillStepBackward,
   AiOutlinePauseCircle,
   AiOutlinePlayCircle,
-  AiOutlineLoading3Quarters
 } from 'react-icons/ai'
 import { BiShuffle, BiLoaderCircle } from 'react-icons/bi'
-import { FaVolumeUp, FaVolumeOff, FaStepBackward } from 'react-icons/fa'
-import { ImNext2 } from 'react-icons/im'
+import { FaVolumeUp, FaVolumeOff } from 'react-icons/fa'
 import { FiRepeat } from 'react-icons/fi'
 import { instance } from '../../../uttils/request'
 import { Global } from '../../GlobalState/GlobalState'
 import toast, { Toaster } from 'react-hot-toast';
-
-
 import classNames from "classnames/bind";
 import styles from './Footer.module.scss'
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import { useState, useRef, useEffect, useContext } from "react";
 import React from 'react';
-import ReactLoading from 'react-loading';
-import axios from 'axios'
 
 
 const cx = classNames.bind(styles)
@@ -39,15 +33,11 @@ function Footer() {
   const [inputvl, setInputvl] = useState('0');
   const [giay, setGiay] = useState('00')
   const [phuts, setPhuts] = useState(0)
-  const [duration, setDuration] = useState('00:00');
+  const [duration, setDuration] = useState();
   const [currentTimes, setCurrentTime] = useState('0');
   const [phut, setPhut] = useState('00')
   const [heart, setHeart] = useState(true)
   const [volumes, setvolumes] = useState()
-
-
-  const inputaudio = useRef()
-
 
 
   const handlePlay = () => {
@@ -56,25 +46,21 @@ function Footer() {
     setplay(false)
   }
 
-
   const handlePause = () => {
     audio.current.pause()
     setPause(false)
     setplay(true)
   }
 
-
   const getapi = async () => {
     if (Item.footer[Item.codeindex] === undefined) {
       return
     }
     try {
-
       setPause(false)
       setLoading(true)
       setplay(false)
       const apis = await instance.get(`/song?id=${Item.footer[Item.codeindex].encodeId}`)
-
       setSrc(apis.data.data[128])
       setPause(true)
       setLoading(false)
@@ -95,13 +81,10 @@ function Footer() {
       setIndexs()
       setInputvl(0)
     }
-
   }, [inputvl])
 
   const timeUpdate = () => {
     if (audio.current.duration) {
-
-
       setGiay(Math.floor(audio.current.currentTime))
       const current = Math.floor(audio.current.duration / 60)
       let phut = Math.floor(audio.current.duration % 60)
@@ -110,7 +93,7 @@ function Footer() {
       }
       setCurrentTime(current)
       setPhut(phut)
-      
+
       setDuration(Math.round(audio.current.duration * 10) / 600)
       setInputvl(Math.floor(audio.current.currentTime / audio.current.duration * 300))
       setPhuts(Math.floor(audio.current.currentTime / 60))
@@ -121,14 +104,11 @@ function Footer() {
       setGiay(minutes)
     }
   }
-
-
   const ocChange = (e) => {
     handlePause()
     audio.current.currentTime = audio.current.duration / 300 * e.target.value
 
   }
-
   const setIndexs = () => {
     const index = Item.codeindex + 1
     Item.setcodeindex(index)
@@ -138,21 +118,6 @@ function Footer() {
     const index = Item.codeindex - 1
     Item.setcodeindex(index)
   }
-
-  const Favourite = async (...props) => {
-    const data = {
-      thumbnailM: props[0],
-      title: props[1],
-      artistsNames: props[2],
-      encodeId: Item.footer[Item.codeindex].encodeId,
-      heart: true
-
-    }
-    await axios.post(`https://632d221d0d7928c7d2455e19.mockapi.io/todolist/listzingmp3`, data)
-    Item.yeuthich()
-
-  }
-
   const handleInput = (e) => {
     if (audio.current.volume < 0.05) {
 
@@ -162,49 +127,35 @@ function Footer() {
   }
 
   const Heart = async (...props) => {
-
-
-
     const cart = localStorage.getItem("heart") ? JSON.parse(localStorage.getItem("heart")) : []
-
     const abc = cart.some((res) => {
       return res.title == props[1]
     })
-
-    if (abc == true) toast.error("Đã thêm bài hát vào yêu thích")
+    if (abc == true) toast.error("Bài hát đã được thêm vào danh sách yêu thích")
     else {
-
       cart.push({
         thumbnailM: props[0],
         title: props[1],
         artistsNames: props[2],
         encodeId: Item.footer[Item.codeindex].encodeId,
         heart: true
-
       })
       localStorage.setItem("heart", JSON.stringify(cart))
-      toast.success('Đã xoá bài hát ')
+      toast.success('Đã thêm bài hát vào yêu thích')
     }
-
   }
-
-
-
-
   return (
     <>
       <Toaster
         position="top-center"
         reverseOrder={false}
       />
-
       {
         Item.footer[Item.codeindex] &&
         <div className={cx('body')}>
-
           <div className={cx('media')}>
             <div >
-              <img className={cx('img6464')} src={Item.footer[Item.codeindex].thumbnailM} />
+              <img className={cx('img6464')} alt='img' src={Item.footer[Item.codeindex].thumbnailM} />
             </div>
             <div className={cx('iteam-wrapper')}>
               <span >{Item.footer[Item.codeindex].title}</span><br>
@@ -239,7 +190,6 @@ function Footer() {
           </div>
           <div className={cx('media1')}>
             <div className={cx('a')}  >
-
               <div className={cx('actions')}>
                 <div className={cx('item')}>
                   <div >
@@ -275,11 +225,10 @@ function Footer() {
                   </div>
                 </div>
                 <div className={cx('leveritem')}>
-
-                  <span> {phuts} : {giay}</span>
+                  <span className={cx('span1')}> {phuts} : {giay}</span>
                   <audio onTimeUpdate={timeUpdate} ref={audio} type="audio/mpeg" src={src} autoPlay ></audio>
                   <input onMouseUp={() => handlePlay()} onChange={ocChange} className={cx('inputrange')} type="range" step='1' min="0" value={inputvl} max="300" />
-                  <span> {currentTimes} <span>:</span> {phut} </span>
+                  <span className={cx('span2')}> {currentTimes} <span>:</span> {phut} </span>
                 </div>
               </div>
             </div>

@@ -1,20 +1,12 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { AiFillPlayCircle } from 'react-icons/ai'
 import classNames from 'classnames/bind';
 import styles from './Private.module.scss'
 import { Link , Outlet } from 'react-router-dom';
-import { useEffect , useState } from 'react';
-
-
 
 
 const cx = classNames.bind(styles)
 
 function Private() {
-    
-  
     
     return (
         <div className={cx('body')} >
@@ -24,10 +16,7 @@ function Private() {
                     <AiFillPlayCircle className={cx('iconplay')} />
                 </button>
             </div>
-
             <div className={cx('cactep')} >
-
-
                 <div className={cx('ten')} >
                     <Link to='' >  BÀI HÁT </Link>
                 </div>
@@ -40,16 +29,12 @@ function Private() {
                 <div className={cx('ten')}>
                     <Link   to="mv" >MV</Link>
                 </div>
-
             </div>
          <div className={cx('aoulet')}>
 
 <Outlet />
 
          </div>
-
-
-
         </div>
     );
 }
